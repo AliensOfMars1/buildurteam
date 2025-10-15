@@ -38,7 +38,7 @@ Once part of a project team, members can chat, coordinate tasks, and view each o
 
 
 ##  Project Structure
-
+```
 BuildurTeam/
 │
 ├── app.py ← App entry point / Factory pattern
@@ -107,8 +107,7 @@ BuildurTeam/
 └── templates/messages/
 ├── inbox.html
 └── chat.html
-
-
+```
 
 
 ##  Setup Instructions
