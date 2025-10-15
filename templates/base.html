@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BuildurTeam{% endblock %}</title>
+
+    <meta name="description" content="BuildurTeam — Pitch ideas, find collaborators, and build projects together.">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" aria-label="Main Navigation">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fa-solid fa-people-group"></i>
+                <span>BuildurTeam</span>
+            </div>
+
+            <ul class="nav-menu">
+                {% if session.get('user_id') %}
+                    <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
+                     <!--other nav links to be added here once we start building their respective routes... pls check contributing.md for more info -->
+
+                {% else %}
+                    <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
+                    <!--other nav links to be added here once we start building their respective routes -->
+
+                {% endif %}
+            </ul>
+
+            <div class="hamburger" aria-label="Menu Toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash-message {{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; {{ current_year if current_year is defined else '2025' }} BuildurTeam — Connect. Collaborate. Create.</p>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,78 @@
+/* Main CSS File */
+
+
+/*landing page styles*/
+
+.intro {
+    text-align: center;
+    padding: 120px 20px;
+    background: linear-gradient(135deg, #007bff, #00c4ff);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+
+.intro h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.3;
+    max-width: 800px;
+}
+
+.intro p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: #e8f1ff;
+    max-width: 600px;
+}
+
+/* Button Styles */
+.btn-primary,
+.btn-secondary {
+    display: inline-block;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    margin: 0 10px;
+}
+
+.btn-primary {
+    background-color: #fff;
+    color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #e8f1ff;
+}
+
+.btn-secondary {
+    border: 2px solid #fff;
+    color: #fff;
+    background: transparent;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .intro h1 {
+        font-size: 2rem;
+    }
+    .intro p {
+        font-size: 1rem;
+    }
+    .btn-primary, .btn-secondary {
+        padding: 10px 20px;
+        margin: 8px 0;
+        width: 80%;
+    }
+}
