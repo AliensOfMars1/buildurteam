@@ -1,8 +1,123 @@
-{% extends "base.html" %}
-{% block title %}Welcome | BuildUrTeam{% endblock %}
+{% extends 'base.html' %}
+
+{% block head %}
+  <!-- Page-Specific Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block title %}BuildurTeam — Empower Your Next Project{% endblock %}
+
 {% block content %}
-<section class="intro">
-    <h1>Welcome to <span>BuildUrTeam</span></h1>
-    <p>Where collaboration is made easy.</p>
+
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>Empower Your Next Project</h1>
+    <p>
+      BuildurTeam is where innovators meet doers — a collaborative platform that connects people with bold ideas 
+      to the talent that can bring them to life. Unlike typical platforms focused on funding, BuildurTeam 
+      emphasizes human collaboration — matching skills, passion, and purpose to build something real.
+    </p>
+    <p>
+      We empower creators to find the right teammates and skilled professionals to join projects that inspire them. 
+      Every connection sparks a new opportunity — every idea finds a team.
+    </p>
+    <div class="hero-buttons">
+      <a href="#" class="btn btn-secondary">Get in Touch</a>
+      <a href="{{ url_for('index') }}" class="btn btn-primary">Start Pitching</a>
+    </div>
+  </div>
 </section>
+
+
+    <div class="hero-image">
+      <img src="{{ url_for('static', filename='img/landingpage_img4.jpg') }}"
+           alt="Team collaboration illustration">
+    </div>
+  </section>
+
+  <!-- Browse Projects Section -->
+  <section class="browse-projects container">
+    <h2>Browse Projects</h2>
+    <div class="projects-slider">
+      <button class="arrow" aria-label="Previous projects">&lt;</button>
+      <div class="projects-container">
+        {% for i in range(1, 11) %}
+          <div class="project-card">
+            <h3>Project {{ i }}</h3>
+            <p>Brief description of project {{ i }}.</p>
+          </div>
+        {% endfor %}
+      </div>
+      <button class="arrow" aria-label="Next projects">&gt;</button>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about container">
+    <h2>About BuildurTeam</h2>
+    <p>
+      BuildurTeam is a Flask-based platform that connects innovators and builders.
+      Pitch your project ideas, find team members, and collaborate seamlessly.
+      Our goal is to simplify team-building and project management in one secure, intuitive interface.
+    </p>
+  </section>
+
+
+      <!-- Footer -->
+
+  <footer class="footer">
+      <div class="container">
+          <div class="footer-content">
+              <div class="footer-section">
+                  <h3><i class="fa-solid fa-seedling"></i> BuildUrTeam</h3>
+                  <p>Your Idea deserves the best team. Here we Empower you find just the right people to turn your ideas into reality .</p>
+                  <div class="social-links">
+                      <a href="https://www.facebook.com/CellusysAcademy/" target="_blank"><i class="fab fa-facebook"></i></a>
+                      <a href="https://www.linkedin.com/company/cellusysacademy/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                      <a href="https://github.com/cellusysacademy" target="_blank"><i class="fab fa-github"></i></a>
+                      <a href="https://www.instagram.com/cellusysacademy/" target="_blank"><i class="fab fa-instagram"></i></a>
+                      <a href="https://www.instagram.com/cellusysacademy/" target="_blank"><i class="fab fa-github"></i></a>
+                  </div>
+              </div>
+
+              <div class="footer-section">
+                  <h4>Quick Links</h4>
+                  <ul>
+                      <li><a href="{{ url_for('index') }}">Home</a></li>
+                      <li><a href="#about">About</a></li>
+                      <li><a href="#courses">Courses</a></li>
+                      <li><a href="#contact">Contact</a></li>
+                  </ul>
+              </div>
+
+              <div class="footer-section">
+                  <h4>Support</h4>
+                  <ul>
+                      <li><a href="#">Help Center</a></li>
+                      <li><a href="#">Privacy Policy</a></li>
+                      <li><a href="#">Terms of Service</a></li>
+                      <li><a href="#">FAQs</a></li>
+                  </ul>
+              </div>
+
+              <div class="footer-section">
+                  <h4>Contact Info</h4>
+                  <ul>
+                      <li><i class="fas fa-envelope"></i> info@buildurteam.com</li>
+                      <li><i class="fas fa-phone"></i> +233 54 418 1268</li>
+                      <li><i class="fas fa-map-marker-alt"></i> 16 Lawson Avenue, near Musuku Roundabout, Kwabenya, Accra, Ghana, GE-229-4157</li>
+                  </ul>
+              </div>
+          </div>
+
+          <div class="footer-bottom">
+              <p>&copy; 2025 BuildUrTeam. All rights reserved.</p>
+          </div>
+      </div>
+  </footer>
+
+
+
 {% endblock %}
