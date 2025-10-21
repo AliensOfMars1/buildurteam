@@ -23,15 +23,19 @@
                 <span>BuildurTeam</span>
             </div>
 
+            <!-- Nav Links -->
             <ul class="nav-menu">
+                <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
+                <li><a href="#" class="nav-link not-ready">Browse Projects</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+
                 {% if session.get('user_id') %}
-                    <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
-                     <!--other nav links to be added here once we start building their respective routes... pls check contributing.md for more info -->
-
+                    <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
+                    <li><a href="#logout" class="nav-link">Logout</a></li>
                 {% else %}
-                    <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
-                    <!--other nav links to be added here once we start building their respective routes -->
-
+                    <li><a href="#" class="nav-link not-ready">Log In</a></li>
+                    <li><a href="#" class="btn-nav not-ready">Sign Up</a></li>
                 {% endif %}
             </ul>
 
@@ -59,11 +63,15 @@
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; {{ current_year if current_year is defined else '2025' }} BuildurTeam — Connect. Collaborate. Create.</p>
-    </footer>
+    <!-- Global "Feature Not Ready" Modal -->
+    <div id="notReadyModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h3> Feature Not Ready Yet</h3>
+        <p>We're still working on this section. Check back soon!</p>
+    </div>
+    </div>
 
-    {% block scripts %}{% endblock %}
+    {% block scripts %}<script src="{{ url_for('static', filename='js/script.js') }}"></script>{% endblock %}
 </body>
 </html>

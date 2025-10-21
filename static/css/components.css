@@ -10,7 +10,10 @@
     --font-main: 'Inter', 'Segoe UI', Tahoma, sans-serif;
 }
 
-   /* Navbar styles */
+
+/* I have commented out the navbar styles for now so the nav styles seen is from main.css, if un-commented, they will take precedence */
+
+   /* Navbar styles
 
 .navbar {
     position: fixed;
@@ -60,7 +63,7 @@
 
 .nav-menu a:hover {
     opacity: 0.8;
-}
+} */
 
 
 /* Button Styles */
@@ -202,6 +205,45 @@
     color: #bdc3c7;
 }
 
+/* Popup Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background: #fff;
+    margin: 15% auto;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.close-btn {
+    float: right;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #555;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-10px);}
+    to {opacity: 1; transform: translateY(0);}
+}
 
 
 

@@ -36,10 +36,10 @@
   </section>
 
   <!-- Browse Projects Section -->
-  <section class="browse-projects container">
+  <section class="browse-projects container" id="projects">
     <h2>Browse Projects</h2>
     <div class="projects-slider">
-      <button class="arrow" aria-label="Previous projects">&lt;</button>
+      <button class="arrow" aria-label="Previous projects"><a href="#" class="nav-link not-ready"> &lt;</a></button>
       <div class="projects-container">
         {% for i in range(1, 11) %}
           <div class="project-card">
@@ -48,12 +48,12 @@
           </div>
         {% endfor %}
       </div>
-      <button class="arrow" aria-label="Next projects">&gt;</button>
+      <button class="arrow" aria-label="Next projects"> <a href="#" class="nav-link not-ready"> &gt;</a></button>
     </div>
   </section>
 
   <!-- About Section -->
-  <section class="about container">
+  <section class="about container" id ="about">
     <h2>About BuildurTeam</h2>
     <p>
       BuildurTeam is a Flask-based platform that connects innovators and builders.
@@ -62,10 +62,9 @@
     </p>
   </section>
 
+  <!-- Footer -->
 
-      <!-- Footer -->
-
-  <footer class="footer">
+  <footer class="footer" id ="contact">
       <div class="container">
           <div class="footer-content">
               <div class="footer-section">
@@ -115,7 +114,5 @@
           </div>
       </div>
   </footer>
-
-
 
 {% endblock %}
