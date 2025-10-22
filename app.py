@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from config import DevelopmentConfig
+import random
 
 def create_app():
     app = Flask(__name__)
@@ -7,7 +8,14 @@ def create_app():
 
     @app.route('/')
     def index():
-        return render_template('index.html')
+        images = [
+            'img/landingpage_img1.jpg',
+            'img/landingpage_img2.jpg',
+            'img/landingpage_img3.jpg',
+            'img/landingpage_img4.jpg']
+        random.shuffle(images)
+        
+        return render_template('index.html', images= images)
 
     return app
 

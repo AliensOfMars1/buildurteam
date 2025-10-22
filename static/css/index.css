@@ -44,6 +44,10 @@
     height: auto;
 }
 
+.hero-image img {
+  transition: opacity 1s ease-in-out;
+  opacity: 1;
+}
 
 
 /* Browse Projects */

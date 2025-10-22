@@ -9,7 +9,6 @@
 
 {% block content %}
 
-
 <!-- Hero Section -->
 <section class="hero">
   <div class="hero-text">
@@ -24,95 +23,98 @@
       Every connection sparks a new opportunity — <b>every idea deserves a team and a chance to grow into something real.</b>
     </p>
     <div class="hero-buttons">
-      <a href="#" class="btn btn-secondary">Get in Touch</a>
-      <a href="{{ url_for('index') }}" class="btn btn-primary">Start Pitching</a>
+      <a href="#" class="btn btn-secondary not-ready" >Get in Touch</a>
+      <a href="{{ url_for('index') }}" class="btn btn-primary not-ready">Start Pitching</a>
     </div>
   </div>
 
-    <div class="hero-image">
-      <img src="{{ url_for('static', filename='img/landingpage_img4.jpg') }}"
-           alt="Team collaboration illustration">
+  <div class="hero-image">
+    <!-- Initial image -->
+    <img id="heroImage" src="{{ url_for('static', filename=images[0]) }}" alt="Team collaboration illustration">
+  </div>
+</section>
+
+<!-- Browse Projects Section -->
+<section class="browse-projects container" id="projects">
+  <h2>Browse Projects</h2>
+  <div class="projects-slider">
+    <button class="arrow" aria-label="Previous projects"><a href="#" class="nav-link not-ready"> &lt;</a></button>
+    <div class="projects-container">
+      {% for i in range(1, 11) %}
+        <div class="project-card">
+          <h3>Project {{ i }}</h3>
+          <p>Brief description of project {{ i }}.</p>
+        </div>
+      {% endfor %}
     </div>
-  </section>
+    <button class="arrow" aria-label="Next projects"> <a href="#" class="nav-link not-ready"> &gt;</a></button>
+  </div>
+</section>
 
-  <!-- Browse Projects Section -->
-  <section class="browse-projects container" id="projects">
-    <h2>Browse Projects</h2>
-    <div class="projects-slider">
-      <button class="arrow" aria-label="Previous projects"><a href="#" class="nav-link not-ready"> &lt;</a></button>
-      <div class="projects-container">
-        {% for i in range(1, 11) %}
-          <div class="project-card">
-            <h3>Project {{ i }}</h3>
-            <p>Brief description of project {{ i }}.</p>
-          </div>
-        {% endfor %}
-      </div>
-      <button class="arrow" aria-label="Next projects"> <a href="#" class="nav-link not-ready"> &gt;</a></button>
-    </div>
-  </section>
+<!-- About Section -->
+<section class="about container" id="about">
+  <h2>About BuildurTeam</h2>
+  <p>
+    BuildurTeam is a Flask-based platform that connects innovators and builders.
+    Pitch your project ideas, find team members, and collaborate seamlessly.
+    Our goal is to simplify team-building and project management in one secure, intuitive interface.
+  </p>
+</section>
 
-  <!-- About Section -->
-  <section class="about container" id ="about">
-    <h2>About BuildurTeam</h2>
-    <p>
-      BuildurTeam is a Flask-based platform that connects innovators and builders.
-      Pitch your project ideas, find team members, and collaborate seamlessly.
-      Our goal is to simplify team-building and project management in one secure, intuitive interface.
-    </p>
-  </section>
-
-  <!-- Footer -->
-
-  <footer class="footer" id ="contact">
-      <div class="container">
-          <div class="footer-content">
-              <div class="footer-section">
-                  <h3><i class="fa-solid fa-seedling"></i> BuildUrTeam</h3>
-                  <p>Your Idea deserves the best team. Here we Empower you find just the right people to turn your ideas into reality .</p>
-                  <div class="social-links">
-                      <a href="https://www.facebook.com/CellusysAcademy/" target="_blank"><i class="fab fa-facebook"></i></a>
-                      <a href="https://www.linkedin.com/company/cellusysacademy/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                      <a href="https://github.com/cellusysacademy" target="_blank"><i class="fab fa-github"></i></a>
-                      <a href="https://www.instagram.com/cellusysacademy/" target="_blank"><i class="fab fa-instagram"></i></a>
-                      <a href="https://www.instagram.com/cellusysacademy/" target="_blank"><i class="fab fa-github"></i></a>
-                  </div>
-              </div>
-
-              <div class="footer-section">
-                  <h4>Quick Links</h4>
-                  <ul>
-                      <li><a href="{{ url_for('index') }}">Home</a></li>
-                      <li><a href="#about">About</a></li>
-                      <li><a href="#courses">Courses</a></li>
-                      <li><a href="#contact">Contact</a></li>
-                  </ul>
-              </div>
-
-              <div class="footer-section">
-                  <h4>Support</h4>
-                  <ul>
-                      <li><a href="#">Help Center</a></li>
-                      <li><a href="#">Privacy Policy</a></li>
-                      <li><a href="#">Terms of Service</a></li>
-                      <li><a href="#">FAQs</a></li>
-                  </ul>
-              </div>
-
-              <div class="footer-section">
-                  <h4>Contact Info</h4>
-                  <ul>
-                      <li><i class="fas fa-envelope"></i> info@buildurteam.com</li>
-                      <li><i class="fas fa-phone"></i> +233 54 418 1268</li>
-                      <li><i class="fas fa-map-marker-alt"></i> 16 Lawson Avenue, near Musuku Roundabout, Kwabenya, Accra, Ghana, GE-229-4157</li>
-                  </ul>
+<!-- Footer -->
+<footer class="footer" id="contact">
+  <div class="container">
+      <div class="footer-content">
+          <div class="footer-section">
+              <h3><i class="fa-solid fa-seedling"></i> BuildUrTeam</h3>
+              <p>Your Idea deserves the best team. Here we empower you find just the right people to turn your ideas into reality.</p>
+              <div class="social-links">
+                  <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                  <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                  <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                  <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
               </div>
           </div>
 
-          <div class="footer-bottom">
-              <p>&copy; 2025 BuildUrTeam. All rights reserved.</p>
+          <div class="footer-section">
+              <h4>Quick Links</h4>
+              <ul>
+                  <li><a href="{{ url_for('index') }}">Home</a></li>
+                  <li><a href="#about">About</a></li>
+                  <li><a href="#projects">Projects</a></li>
+                  <li><a href="#contact">Contact</a></li>
+              </ul>
+          </div>
+
+          <div class="footer-section">
+              <h4>Support</h4>
+              <ul>
+                  <li><a href="#">Help Center</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Terms of Service</a></li>
+                  <li><a href="#">FAQs</a></li>
+              </ul>
+          </div>
+
+          <div class="footer-section">
+              <h4>Contact Info</h4>
+              <ul>
+                  <li><i class="fas fa-envelope"></i> info@buildurteam.com</li>
+                  <li><i class="fas fa-phone"></i> +233 54 418 1268</li>
+                  <li><i class="fas fa-map-marker-alt"></i> 16 Lawson Avenue, Kwabenya, Accra, Ghana</li>
+              </ul>
           </div>
       </div>
-  </footer>
+
+      <div class="footer-bottom">
+          <p>&copy; 2025 BuildUrTeam. All rights reserved.</p>
+      </div>
+  </div>
+</footer>
+
+<script>
+  window.heroImages = {{ images | tojson | safe }};
+</script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 {% endblock %}
