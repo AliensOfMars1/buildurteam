@@ -112,9 +112,13 @@
   </div>
 </footer>
 
+<!-- Note: You might see red underlines in the window.heroImages code below and vs might catch it as a problem.
+     VS Code flags it because it doesn't fully understand Jinja template syntax inside scripts.
+     This isn't an actual issue — the code will render correctly when the app runs. -->
 <script>
   window.heroImages = {{ images | tojson | safe }};
 </script>
+
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 {% endblock %}
