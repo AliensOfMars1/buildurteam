@@ -41,72 +41,79 @@ Once part of a project team, members can chat, coordinate tasks, and view each o
 ```
 BuildurTeam/
 │
-├── app.py ← App entry point / Factory pattern
-├── config.py ← Configuration (dev, test, prod)
-├── requirements.txt ← Python dependencies
-├── README.md ← You are here
-├── .gitignore ← Ignored files & folders
+├── app.py                    ← App entry point / Factory pattern
+├── config.py                 ← Configuration (dev, test, prod)
+├── requirements.txt          ← Python dependencies
+├── README.md                 ← about and how to clone this web app
+├── .gitignore                ← Ignored files & folders
 │
 ├── static/
-│ ├── css/
-│ │ ├── main.css
-│ │ └── components.css
-│ ├── js/
-│ │ └── script.js
-│ ├── img/
-│ │ └── logo.png
-│ └── uploads/ ← Uploaded project media
+│   ├── css/
+│   │   ├── main.css
+│   │   ├── components.css
+│   │   └── index.css
+│   ├── js/
+│   │   └── script.js
+│   ├── img/
+│   │   └── img resources
+│   └── uploads/              ← Uploaded project media
 │
 ├── templates/
-│ ├── base.html ← Global layout template
-│ ├── landingpage.html ← Public landing page
-│ └── errors/
-│ ├── 404.html
-│ └── 500.html
+│   ├── base.html             ← Global layout template
+│   ├── index.html            ← Public landing page
+│   └── errors/
+│       ├── 404.html
+│       └── 500.html
 │
-├── extensions/ ← Reusable Flask extensions (DB, login, etc.)
-│ └── db.py
+├── extensions/               ← Reusable Flask extensions (DB, login, etc.)
+│   └── db.py
 │
-├── models/ ← Database models
-│ ├── user.py
-│ ├── project.py
-│ ├── message.py
-│ └── team.py
+├── models/                   ← Database models
+│   ├── user.py
+│   ├── project.py
+│   ├── message.py
+│   └── team.py
 │
-├── auth/ ← Handles user authentication
-│ ├── routes.py
-│ ├── forms.py
-│ └── templates/auth/
-│ ├── login.html
-│ ├── signup.html
-│ └── forgot_password.html
+├── auth/                     ← Handles user authentication
+│   ├── routes.py
+│   ├── forms.py
+│   ├── static/
+│   │   └── css/
+│   │       └── auth.css
+│   └── templates/auth/
+│       ├── login.html
+│       ├── signup.html
+│       └── forgot_password.html
 │
-├── user/ ← Handles user dashboards and profiles
-│ ├── routes.py
-│ └── templates/user/
-│ ├── dashboard.html
-│ ├── profile.html
-│ └── edit_profile.html
+├── user/                     ← Handles user dashboards and profiles
+│   ├── routes.py
+│   ├── static/
+│   │   └── css/
+│   │       └── user.css
+│   └── templates/user/
+│       ├── dashboard.html
+│       ├── profile.html
+│       └── edit_profile.html
 │
-├── projects/ ← Manages project creation and browsing
-│ ├── routes.py
-│ └── templates/projects/
-│ ├── create_project.html
-│ ├── project_detail.html
-│ ├── browse_projects.html
-│ └── edit_project.html
+├── projects/                 ← Manages project creation and browsing
+│   ├── routes.py
+│   ├── static/
+│   │   └── css/
+│   │       └── projects.css
+│   └── templates/projects/
+│       ├── create_project.html
+│       ├── project_detail.html
+│       ├── browse_projects.html
+│       └── edit_project.html
 │
-├── teams/ ← Manages team membership and approvals
-│ ├── routes.py
-│ └── templates/teams/
-│ ├── team_detail.html
-│ └── manage_members.html
-│
-└── messages/ ← Team chat and communication
-├── routes.py
-└── templates/messages/
-├── inbox.html
-└── chat.html
+└── messages/                 ← Team chat and communication
+    ├── routes.py
+    ├── static/
+    │   └── css/
+    │       └── messages.css
+    └── templates/messages/
+        ├── inbox.html
+        └── chat.html
 ```
 
 
