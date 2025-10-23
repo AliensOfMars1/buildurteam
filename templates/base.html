@@ -34,8 +34,8 @@
                     <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
                     <li><a href="#logout" class="nav-link">Logout</a></li>
                 {% else %}
-                    <li><a href="#" class="nav-link not-ready">Log In</a></li>
-                    <li><a href="#" class="btn-nav not-ready">Sign Up</a></li>
+                    <li><a href="{{ url_for('auth.login') }}" class="nav-link">Login</a></li>
+                    <li><a href="{{ url_for('auth.signup') }}" class="btn-nav">Sign Up</a></li>
                 {% endif %}
             </ul>
 
