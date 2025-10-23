@@ -2,17 +2,23 @@ from flask import Flask, render_template
 from config import DevelopmentConfig
 import random
 from auth import auth_bp
+from user import user_bp
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(DevelopmentConfig)
 
     # Register Blueprints
-    # --- register auth blueprint ---
     try:
         app.register_blueprint(auth_bp)
     except Exception as e:
         app.logger.error("Failed to register auth blueprint: %s", e)
+
+    try:
+        app.register_blueprint(user_bp)
+    except Exception as e:
+        app.logger.error("Failed to register user blueprint: %s", e)
+
 
     @app.route('/')
     def index():
