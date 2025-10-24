@@ -4,6 +4,7 @@ import random
 from auth import auth_bp
 from user import user_bp
 from messages import messages_bp
+from projects import projects_bp
 
 def create_app():
     app = Flask(__name__)
@@ -24,6 +25,12 @@ def create_app():
         app.register_blueprint(messages_bp)
     except Exception as e:
         app.logger.error("Failed to register messages blueprint: %s", e)
+
+    try:
+        app.register_blueprint(projects_bp)
+    except Exception as e:
+        app.logger.error("Failed to register projects blueprint: %s", e)
+
 
     @app.route('/')
     def index():
