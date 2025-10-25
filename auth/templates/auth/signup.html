@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block head %}
+  <!-- Page-Specific Styles -->
+    <link rel="stylesheet" href="{{ url_for('auth.static', filename='auth.css') }}">
+{% endblock %}
+
+{% block title %} Sign Up for BuildurTeam{% endblock %}
+
+{% block content %}
+    <h1>Welcome to signup — auth_bp route working fine 🎉</h1>
+
+    <p>This confirms <strong>auth blueprint</strong> is registered correctly.</p>
+
+    <a href="{{ url_for('index') }}" class="nav-link btn-nav auth-btn" >← Back to Home</a>
+{% endblock %}
