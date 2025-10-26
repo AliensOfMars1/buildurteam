@@ -6,6 +6,8 @@ from user import user_bp
 from messages import messages_bp
 from projects import projects_bp
 
+
+
 def create_app():
     app = Flask(__name__)
     app.config.from_object(DevelopmentConfig)
