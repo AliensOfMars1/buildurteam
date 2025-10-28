@@ -10,7 +10,11 @@ venv/
 # Flask
 instance/
 *.db
-migrations/
+
+# Track migrations but ignore caches
+migrations/**/__pycache__/
+migrations/*.pyc
+migrations/*.pyo
 
 # IDEs
 .vscode/
