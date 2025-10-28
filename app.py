@@ -1,14 +1,24 @@
 from flask import Flask, render_template
+from flask_migrate import Migrate
 from config import DevelopmentConfig
 import random
 from auth import auth_bp
+from extensions import db
 from user import user_bp
 from messages import messages_bp
 from projects import projects_bp
+from models import User, Project, Message
+
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(DevelopmentConfig)
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///buildurteam.db'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.secret_key = 'dev_secret_key_buildurteam'
+
+    db.init_app(app)
+    migrate = Migrate(app, db)
 
     # Register Blueprints
     try:

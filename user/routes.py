@@ -1,9 +1,11 @@
 from flask import render_template
 from . import user_bp
+from models import Project
 
 @user_bp.route('/dashboard')
 def dashboard():
-    return render_template('user/dashboard.html')
+    projects = Project.query.limit(6).all()  # get first 6 projects
+    return render_template('user/dashboard.html', projects=projects)
 
 @user_bp.route('/profile')
 def profile():
