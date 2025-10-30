@@ -15,7 +15,7 @@
     {% block head %}{% endblock %}
 </head>
 <body>
-    <!-- Navigation -->
+        <!-- Navigation -->
     <nav class="navbar" aria-label="Main Navigation">
         <div class="nav-container">
             <div class="nav-logo">
@@ -25,15 +25,14 @@
 
             <!-- Nav Links -->
             <ul class="nav-menu">
-                <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
-                {% include 'partials/nav_dropdown.html' %}
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-
-                {% if session.get('user_id') %}
-                    <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
-                    <li><a href="#logout" class="nav-link">Logout</a></li>
+                {% if current_user.is_authenticated %} 
+                    {% include 'partials/nav_dropdown.html' %}
+                    <li><a href="{{ url_for('user.dashboard') }}" class="nav-link">Dashboard</a></li>
+                    <li><a href="{{ url_for('auth.logout') }}" class="nav-link">Logout ({{ current_user.username }})</a></li>
                 {% else %}
+                    <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
                     <li><a href="{{ url_for('auth.login') }}" class="nav-link">Login</a></li>
                     <li><a href="{{ url_for('auth.signup') }}" class="btn-nav">Sign Up</a></li>
                 {% endif %}

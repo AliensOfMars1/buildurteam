@@ -1,17 +1,18 @@
-from flask import render_template
+from flask import render_template, redirect, url_for
+from flask_login import login_required, current_user
 from . import user_bp
-from models import Project
 
 @user_bp.route('/dashboard')
+@login_required
 def dashboard():
-    projects = Project.query.limit(6).all()  # get first 6 projects
-    return render_template('user/dashboard.html', projects=projects)
+    return render_template('user/dashboard.html', user=current_user)
 
 @user_bp.route('/profile')
+@login_required
 def profile():
-    return render_template('user/profile.html')
+    return render_template('user/profile.html', user=current_user)
 
-@user_bp.route('/settings')
-def settings():
-    return render_template('user/edit_profile.html')
-
+@user_bp.route('/edit-profile')
+@login_required
+def edit_profile():
+    return render_template('user/edit_profile.html', user=current_user)

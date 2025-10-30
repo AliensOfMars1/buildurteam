@@ -1,49 +1,36 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask_migrate import Migrate
 from config import DevelopmentConfig
 import random
 from auth import auth_bp
-from extensions import db
+from extensions import db, login_manager
 from user import user_bp
 from messages import messages_bp
 from projects import projects_bp
-from models import User, Project, Message
-
+from flask_login import current_user
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(DevelopmentConfig)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///buildurteam.db'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.secret_key = 'dev_secret_key_buildurteam'
-
+    
+    # Initialize extensions
     db.init_app(app)
+    login_manager.init_app(app)
     migrate = Migrate(app, db)
 
     # Register Blueprints
-    try:
-        app.register_blueprint(auth_bp)
-    except Exception as e:
-        app.logger.error("Failed to register auth blueprint: %s", e)
-
-    try:
-        app.register_blueprint(user_bp)
-    except Exception as e:
-        app.logger.error("Failed to register user blueprint: %s", e)
-
-    try:
-        app.register_blueprint(messages_bp)
-    except Exception as e:
-        app.logger.error("Failed to register messages blueprint: %s", e)
-
-    try:
-        app.register_blueprint(projects_bp)
-    except Exception as e:
-        app.logger.error("Failed to register projects blueprint: %s", e)
-
+    app.register_blueprint(auth_bp)
+    app.register_blueprint(user_bp)
+    app.register_blueprint(messages_bp)
+    app.register_blueprint(projects_bp)
 
     @app.route('/')
     def index():
+        # If user is logged in, redirect to dashboard
+        if current_user.is_authenticated:
+            return redirect(url_for('user.dashboard'))
+        
+        # If not logged in, show landing page
         images = [
             'img/landingpage_img1.jpg',
             'img/landingpage_img2.jpg',
@@ -51,7 +38,7 @@ def create_app():
             'img/landingpage_img4.jpg']
         random.shuffle(images)
         
-        return render_template('index.html', images= images)
+        return render_template('index.html', images=images)
 
     return app
 
