@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block head %}
+  <!-- Page-Specific Styles -->
+    <link rel="stylesheet" href="{{ url_for('user.static', filename='user.css') }}">
+{% endblock %}
+
+{% block title %} User Dashboard - BuildurTeam{% endblock %}
+
+{% block content %}
+    <h1>Welcome to your dashboard — user_bp route working fine 🎉</h1>
+
+    <p>This confirms <strong>user blueprint</strong> is registered correctly.</p>
+
+    <a href="{{ url_for('index') }}" class="nav-link btn-nav auth-btn" >← Back to Home</a>
+{% endblock %}  

@@ -1,3 +1,3 @@
-from flask_sqlalchemy import SQLAlchemy
+from .db import db, login_manager
 
-db = SQLAlchemy()
+__all__ = ['db', 'login_manager']
