@@ -1,15 +1,68 @@
-{% extends 'base.html' %}
-{% block head %}
-  <!-- Page-Specific Styles -->
-    <link rel="stylesheet" href="{{ url_for('user.static', filename='user.css') }}">
-{% endblock %}
+{% extends "dashboard_base.html" %}
 
-{% block title %} User Dashboard - BuildurTeam{% endblock %}
+{% block title %}Dashboard - BuildurTeam{% endblock %}
 
+{% block head %} <link rel="stylesheet" href="{{ url_for('user.static', filename='user.css') }}">{% endblock %}
 {% block content %}
-    <h1>Welcome to your dashboard — user_bp route working fine 🎉</h1>
+<div class="dashboard-header">
+    <h1>Welcome back, {{ current_user.username }}! 👋</h1>
+    <p>Here's what's happening with your projects today.</p>
+</div>
 
-    <p>This confirms <strong>user blueprint</strong> is registered correctly.</p>
+<!-- Stats Overview -->
+<div class="stats-grid">
+    <div class="stat-card">
+        <h3>Active Projects</h3>
+        <p class="stat-number">0</p>
+    </div>
+    <div class="stat-card">
+        <h3>Team Members</h3>
+        <p class="stat-number">0</p>
+    </div>
+    <div class="stat-card">
+        <h3>Messages</h3>
+        <p class="stat-number">0</p>
+    </div>
+    <div class="stat-card">
+        <h3>Completed</h3>
+        <p class="stat-number">0</p>
+    </div>
+</div>
 
-    <a href="{{ url_for('index') }}" class="nav-link btn-nav auth-btn" >← Back to Home</a>
-{% endblock %}  
+<!-- Quick Actions -->
+<div class="action-grid">
+    <a href="#" class="action-card">
+        <i class="fas fa-plus-circle"></i>
+        <h3>Create Project</h3>
+        <p>Start a new project and find collaborators</p>
+    </a>
+    
+    <a href="#" class="action-card">
+        <i class="fas fa-compass"></i>
+        <h3>Explore Projects</h3>
+        <p>Discover projects to join and collaborate on</p>
+    </a>
+    
+    <a href="#" class="action-card">
+        <i class="fas fa-envelope"></i>
+        <h3>Check Messages</h3>
+        <p>View your conversations and notifications</p>
+    </a>
+    
+    <a href="#" class="action-card">
+        <i class="fas fa-user-cog"></i>
+        <h3>Update Profile</h3>
+        <p>Manage your account settings and preferences</p>
+    </a>
+</div>
+
+<!-- Recent Activity Section -->
+<div style="margin-top: 3rem;">
+    <h2 style="color: #1e293b; margin-bottom: 1rem;">Recent Activity</h2>
+    <div class="empty-state">
+        <i class="fas fa-inbox"></i>
+        <h3>No recent activity</h3>
+        <p>Get started by creating your first project!</p>
+    </div>
+</div>
+{% endblock %}
