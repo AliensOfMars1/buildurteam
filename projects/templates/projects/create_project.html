@@ -1,0 +1,59 @@
+{% extends "dashboard_base.html" %}
+
+{% block title %}Create Project - BuildurTeam{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('projects_bp.static', filename='projects.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="form-header">
+    <h1>Create New Project</h1>
+    <p>Start a new project and find collaborators to join your team</p>
+</div>
+
+<div class="form-container">
+    <form method="POST" class="project-form">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-group">
+            {{ form.title.label(class="form-label") }}
+            {{ form.title(class="form-input", placeholder="Enter project title") }}
+            {% for error in form.title.errors %}
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.description.label(class="form-label") }}
+            {{ form.description(class="form-textarea", placeholder="Describe your project in detail...") }}
+            {% for error in form.description.errors %}
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+            <small class="form-help">What are you building? What problem does it solve?</small>
+        </div>
+
+        <div class="form-group">
+            {{ form.category.label(class="form-label") }}
+            {{ form.category(class="form-select") }}
+            {% for error in form.category.errors %}
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.skills_needed.label(class="form-label") }}
+            {{ form.skills_needed(class="form-input", placeholder="e.g., Python, JavaScript, UI/UX Design") }}
+            {% for error in form.skills_needed.errors %}
+                <span class="error-message">{{ error }}</span>
+            {% endfor %}
+            <small class="form-help">Separate skills with commas</small>
+        </div>
+
+        <div class="form-actions">
+            {{ form.submit(class="submit-btn") }}
+            <a href="{{ url_for('user.dashboard') }}" class="cancel-btn">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
