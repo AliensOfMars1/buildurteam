@@ -2,10 +2,13 @@
 
 {% block title %}Dashboard - BuildurTeam{% endblock %}
 
-{% block head %} <link rel="stylesheet" href="{{ url_for('user.static', filename='user.css') }}">{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('user.static', filename='user.css') }}">
+{% endblock %}
+
 {% block content %}
 <div class="dashboard-header">
-    <h1>Welcome back, {{ current_user.username }}! 👋</h1>
+    <h1>Welcome back, {{ current_user.username }}! </h1>
     <p>Here's what's happening with your projects today.</p>
 </div>
 
@@ -13,31 +16,35 @@
 <div class="stats-grid">
     <div class="stat-card">
         <h3>Active Projects</h3>
-        <p class="stat-number">0</p>
+        <p class="stat-number">{{ active_projects_count }}</p>
+        <small>{{ owned_projects|length }} owned, {{ joined_projects|length }} joined</small>
     </div>
     <div class="stat-card">
         <h3>Team Members</h3>
-        <p class="stat-number">0</p>
+        <p class="stat-number">{{ team_members_count }}</p>
+        <small>Across your projects</small>
     </div>
     <div class="stat-card">
         <h3>Messages</h3>
-        <p class="stat-number">0</p>
+        <p class="stat-number">{{ messages_count }}</p>
+        <small>Unread conversations</small>
     </div>
     <div class="stat-card">
         <h3>Completed</h3>
-        <p class="stat-number">0</p>
+        <p class="stat-number">{{ completed_projects_count }}</p>
+        <small>Finished projects</small>
     </div>
 </div>
 
 <!-- Quick Actions -->
 <div class="action-grid">
-    <a href="#" class="action-card">
+    <a href="{{ url_for('projects_bp.create_project') }}" class="action-card">
         <i class="fas fa-plus-circle"></i>
         <h3>Create Project</h3>
         <p>Start a new project and find collaborators</p>
     </a>
-    
-    <a href="#" class="action-card">
+
+    <a href="{{ url_for('projects_bp.browse_projects') }}" class="action-card">
         <i class="fas fa-compass"></i>
         <h3>Explore Projects</h3>
         <p>Discover projects to join and collaborate on</p>
@@ -49,20 +56,75 @@
         <p>View your conversations and notifications</p>
     </a>
     
-    <a href="#" class="action-card">
+    <a href="{{ url_for('user.profile') }}" class="action-card">
         <i class="fas fa-user-cog"></i>
         <h3>Update Profile</h3>
         <p>Manage your account settings and preferences</p>
     </a>
 </div>
 
-<!-- Recent Activity Section -->
-<div style="margin-top: 3rem;">
-    <h2 style="color: #1e293b; margin-bottom: 1rem;">Recent Activity</h2>
-    <div class="empty-state">
-        <i class="fas fa-inbox"></i>
-        <h3>No recent activity</h3>
-        <p>Get started by creating your first project!</p>
+<!-- Recent Projects Section -->
+<div class="projects-section">
+    <div class="section-header">
+        <h2 class="section-title">Your Projects</h2>
+        <a href="{{ url_for('projects_bp.create_project') }}" class="new-project-link">
+            <i class="fas fa-plus"></i> New Project
+        </a>
     </div>
+
+    {% if owned_projects or joined_projects %}
+    <div class="projects-grid">
+        <!-- Owned Projects -->
+        {% for project in owned_projects %}
+        <a href="{{ url_for('projects_bp.project_detail', project_id=project.id) }}" class="project-card">
+            <div class="project-header">
+                <h3 class="project-title">{{ project.title }}</h3>
+                <span class="project-badge badge-owner">Owner</span>
+            </div>
+            <p class="project-description">
+                {{ project.description[:100] }}{% if project.description|length > 100 %}...{% endif %}
+            </p>
+            <div class="project-footer">
+                <small class="project-meta">
+                    {{ project.get_team_size() }} members
+                </small>
+                <span class="project-status status-active">
+                    Active
+                </span>
+            </div>
+        </a>
+        {% endfor %}
+
+        <!-- Joined Projects (where user is member but not owner) -->
+        {% for project in joined_projects %}
+        <a href="{{ url_for('projects.project_detail', project_id=project.id) }}" class="project-card">
+            <div class="project-header">
+                <h3 class="project-title">{{ project.title }}</h3>
+                <span class="project-badge badge-member">Member</span>
+            </div>
+            <p class="project-description">
+                {{ project.description[:100] }}{% if project.description|length > 100 %}...{% endif %}
+            </p>
+            <div class="project-footer">
+                <small class="project-meta">
+                    By {{ project.owner.username }}
+                </small>
+                <span class="project-status status-active">
+                    Active
+                </span>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <i class="fas fa-folder-open"></i>
+        <h3>No projects yet</h3>
+        <p>Get started by creating your first project or joining an existing one!</p>
+        <a href="#" class="create-project-btn">
+            Create Your First Project
+        </a>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}

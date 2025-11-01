@@ -13,5 +13,32 @@ class Project(db.Model):
     # One project can have one team
     team = db.relationship('Team', backref='project', uselist=False)
 
+
+
+    # One project can have one team
+    team = db.relationship('Team', backref='project', uselist=False)
+
+
+    def get_team_size(self):
+        """Get total team members including owner"""
+        if self.team and self.team.members:
+            return len(self.team.members) + 1  # +1 for owner
+        return 1  # Just the owner
+
+
+
+    """Check if user is a member of this project's team"""
+    def is_user_member(self, user_id):
+        if self.owner_id == user_id:
+            return True
+        if self.team:
+            return user_id in [member.id for member in self.team.members]
+        return False
+
     def __repr__(self):
         return f"<Project {self.title}>"
+    
+
+
+
+    

@@ -27,3 +27,8 @@ Thumbs.db
 # Uploads
 static/uploads/*
 !static/uploads/.gitkeep
+
+#files
+compare.py
+projects/forms.py
+ 
